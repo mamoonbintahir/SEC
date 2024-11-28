@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Image */
+        body {
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Form Container */
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Form */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input {
+            margin: 10px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form button {
+            margin-top: 10px;
+            padding: 10px;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #0056b3;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons p {
+            margin-bottom: 10px;
+        }
+
+        .icons a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .icons img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Sign In</h1>
+            <form id="signInForm">
+                <input type="email" name="email" placeholder="Email" value="mamoonbintahir@gmail.com" required>
+                <input type="password" name="password" placeholder="Password" value="moon" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <div class="social-icons">
+                <p>Or sign in with</p>
+                <div class="icons">
+                    <a href="#"><img src="icon-facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="icon-twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="icon-google.png" alt="Google"></a>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 PTSD VR Therapy. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('signInForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const email = event.target.email.value;
+            const password = event.target.password.value;
+
+            // Check credentials
+            if (email === "mamoonbintahir@gmail.com" && password === "moon") {
+                alert("Sign-in successful!");
+                window.location.href = "dashboard.html"; // Redirect to the dashboard
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

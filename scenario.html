@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenario Creation</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+
+        /* Background Styling */
+        body {
+            background: url('scenariobackground.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Title */
+        .page-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* Container */
+        .container {
+            display: flex;
+            justify-content: flex-start; /* Align items to the left */
+            align-items: flex-start;
+            width: 100%;
+            position: relative; /* Allow positioning of the sidebar */
+        }
+
+        /* Sidebar for Features */
+        .sidebar {
+            width: 250px; /* Fixed width for the sidebar */
+            background: rgba(0, 0, 0, 0.7); /* Darker background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed; /* Fixed position for full screen height */
+            top: 0; /* Start from the top of the page */
+            left: 0; /* Align to the leftmost */
+            bottom: 0; /* Extend to the bottom of the page */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100vh; /* Ensure full height */
+        }
+
+        .feature {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .feature img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .feature button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .feature button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Brightness Control */
+        .brightness-control {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brightness-control input {
+            margin-top: 10px;
+            width: 80%;
+        }
+
+        /* Create Button */
+        .create-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .create-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        Scenario Creation
+    </div>
+
+    <div class="container">
+        <!-- Sidebar for Features -->
+        <div class="sidebar">
+            <!-- Customize Element -->
+            <div class="feature">
+                <img src="customize-icon.jpg" alt="Customize Element"> <!-- Changed to .jpg -->
+                <p>Customize Element</p>
+                <button onclick="navigateTo('customize.html')">Go to Customize</button>
+            </div>
+
+            <!-- Open Scenario -->
+            <div class="feature">
+                <img src="open-icon.jpg" alt="Open Scenario"> <!-- Changed to .jpg -->
+                <p>Open Scenario</p>
+                <button onclick="navigateTo('open.html')">Open Scenario</button>
+            </div>
+
+            <!-- Adjust Intensity -->
+            <div class="feature brightness-control">
+                <img src="brightness-icon.png" alt="Adjust Intensity"> <!-- Changed to .jpg -->
+                <p>Adjust Intensity</p>
+                <input type="range" min="0" max="100" value="50" id="brightnessRange" onchange="adjustBrightness(this.value)">
+                <p id="brightnessValue">Brightness: 50%</p>
+            </div>
+
+            <!-- Delete Scenario -->
+            <div class="feature">
+                <img src="delete-icon.jpg" alt="Delete Scenario"> <!-- Changed to .jpg -->
+                <p>Delete Scenario</p>
+                <button onclick="navigateTo('delete.html')">Delete Scenario</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Button (Top Right Corner) -->
+    <a href="create.html">
+        <button class="create-btn">Create</button>
+    </a>
+
+    <!-- Back Button (Top Left Corner) -->
+    <a href="dashboard.html">
+        <button class="back-btn">Back</button>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 PTSD VR Therapy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to navigate to different pages based on button clicks
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // Adjust brightness function
+        function adjustBrightness(value) {
+            const brightnessText = document.getElementById("brightnessValue");
+            brightnessText.textContent = `Brightness: ${value}%`;
+            // You can add additional logic here to apply brightness effect to the page
+            document.body.style.filter = `brightness(${value}%)`;
+        }
+    </script>
+
+</body>
+</html>

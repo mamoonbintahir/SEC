@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Scenario</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+
+        /* Background Styling */
+        body {
+            background: url('scenariobackground.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6); /* Darker background */
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .upload-section {
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .upload-section img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .upload-section input[type="file"], .upload-section input[type="text"] {
+            display: block;
+            margin-top: 10px;
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .upload-section button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .upload-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .go-back-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .go-back-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Image Preview Section */
+        .image-preview {
+            margin-top: 20px;
+            display: none; /* Hidden by default */
+        }
+
+        .image-preview img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Container for Create Scenario Form -->
+    <div class="container">
+        <h2>Create Scenario</h2>
+
+        <!-- Image Upload Section -->
+        <div class="upload-section">
+            <img src="upload-image-icon.webp" alt="Upload Image">
+            <p>Upload an Image</p>
+            <input type="file" id="imageFile" accept="image/*" onchange="previewImage()">
+            <div class="image-preview" id="imagePreview">
+                <p>Image Preview:</p>
+                <img id="imagePreviewImg" src="" alt="Image Preview">
+            </div>
+        </div>
+
+        <!-- Music Upload Section -->
+        <div class="upload-section">
+            <img src="upload-music-icon.webp" alt="Upload Music">
+            <p>Upload Music</p>
+            <input type="file" id="musicFile" accept="audio/*">
+            <button onclick="uploadMusic()">Upload Music</button>
+        </div>
+
+        <!-- Meditation Guide Section -->
+        <div class="upload-section">
+            <img src="upload-meditation-icon.png" alt="Upload Meditation Guide">
+            <p>Upload Meditation Guide</p>
+            <input type="text" id="meditationPrompt" placeholder="Enter Meditation Prompt">
+            <button onclick="uploadMeditation()">Upload Meditation Prompt</button>
+        </div>
+
+        <!-- Go Back Button (Links to Scenario Creation) -->
+        <a href="scenario.html">
+            <button class="go-back-btn">Go Back to Scenario Creation</button>
+        </a>
+    </div>
+
+    <script>
+        // Function to preview the uploaded image
+        function previewImage() {
+            const file = document.getElementById("imageFile").files[0];
+            const reader = new FileReader();
+            const preview = document.getElementById("imagePreview");
+            const previewImg = document.getElementById("imagePreviewImg");
+
+            if (file) {
+                reader.onload = function(event) {
+                    preview.style.display = "block"; // Show the image preview
+                    previewImg.src = event.target.result; // Set the preview image
+                };
+                reader.readAsDataURL(file); // Read the file as a data URL
+            } else {
+                preview.style.display = "none"; // Hide the preview if no file is selected
+            }
+        }
+
+        // Function to handle music upload (can be extended for actual functionality)
+        function uploadMusic() {
+            const musicFile = document.getElementById("musicFile").files[0];
+            if (musicFile) {
+                alert("Music uploaded successfully!");
+                // Add more logic for actual uploading if needed
+            } else {
+                alert("Please select a music file to upload.");
+            }
+        }
+
+        // Function to handle meditation prompt upload (can be extended for actual functionality)
+        function uploadMeditation() {
+            const meditationPrompt = document.getElementById("meditationPrompt").value;
+            if (meditationPrompt) {
+                alert("Meditation prompt uploaded: " + meditationPrompt);
+                // Add more logic to save the meditation prompt if needed
+            } else {
+                alert("Please enter a meditation prompt.");
+            }
+        }
+    </script>
+
+</body>
+</html>

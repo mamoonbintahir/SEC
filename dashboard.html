@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Styling */
+        body {
+            background: url('dashboardbackground.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Dashboard Container */
+        .dashboard {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        .dashboard h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        /* Modules Grid */
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Module Buttons */
+        .module {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .module:hover {
+            background: #444;
+            transform: scale(1.05);
+        }
+
+        .module img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .module p {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Mind-path - Dashboard</h1>
+        <div class="modules">
+            <div class="module" onclick="navigateTo('scenario.html')">
+                <img src="scenariodashboard.jpg" alt="Scenario Creation">
+                <p>Scenario Creation</p>
+            </div>
+            <div class="module" onclick="navigateTo('feedback.html')">
+                <img src="feedbackdashboard.jpg" alt="Feedback and Control">
+                <p>Feedback and Control</p>
+            </div>
+            <div class="module" onclick="navigateTo('multilingual.html')">
+                <img src="multidashboard.jpg" alt="Multilingual">
+                <p>Multilingual</p>
+            </div>
+            <div class="module" onclick="navigateTo('offline.html')">
+                <img src="offlinedashboard.png" alt="Offline Module">
+                <p>Offline Module</p>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 PTSD VR Therapy. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

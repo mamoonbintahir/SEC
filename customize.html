@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Elements</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+
+        /* Background Styling */
+        body {
+            background: url('scenariobackground.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Centered Container */
+        .container {
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            padding: 40px;
+            border-radius: 15px;
+            width: 60%;
+            max-width: 800px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Title */
+        .page-title {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        /* Image Customization */
+        .customize-image {
+            margin-bottom: 30px;
+        }
+
+        .customize-image img {
+            width: 300px;  /* Smaller image */
+            height: 300px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .customize-image input[type="file"] {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .customize-image input[type="file"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Volume Control */
+        .volume-control,
+        .brightness-control {
+            margin-bottom: 30px;
+        }
+
+        .volume-control input,
+        .brightness-control input {
+            width: 80%;
+            margin-top: 10px;
+        }
+
+        .volume-control label,
+        .brightness-control label {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            padding: 20px 40px;
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            width: 250px;
+        }
+
+        .back-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Centered Container -->
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            Customize Elements
+        </div>
+
+        <!-- Image Customization Section -->
+        <div class="customize-image">
+            <img id="imagePreview" src="hardcore-image.jpg" alt="Preview Image">
+            <br>
+            <input type="file" accept="image/*" onchange="changeImage(event)">
+        </div>
+
+        <!-- Volume Control Section -->
+        <div class="volume-control">
+            <label for="volumeRange">Adjust Voiceover Volume</label>
+            <input type="range" id="volumeRange" min="0" max="100" value="50" onchange="adjustVolume(this.value)">
+            <p id="volumeValue">Volume: 50%</p>
+        </div>
+
+        <!-- Brightness Control Section -->
+        <div class="brightness-control">
+            <label for="brightnessRange">Adjust Image Brightness</label>
+            <input type="range" id="brightnessRange" min="0" max="200" value="100" onchange="adjustBrightness(this.value)">
+            <p id="brightnessValue">Brightness: 100%</p>
+        </div>
+
+        <!-- Back Button to Scenario Page -->
+        <a href="scenario.html">
+            <button class="back-btn">Back to Scenario</button>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 PTSD VR Therapy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to change the image preview
+        function changeImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const image = document.getElementById("imagePreview");
+                    image.src = e.target.result;  // Set the new image source
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Function to adjust the voiceover volume
+        function adjustVolume(value) {
+            const volumeText = document.getElementById("volumeValue");
+            volumeText.textContent = `Volume: ${value}%`;
+            // Add logic here to adjust the actual volume of the voiceover if necessary
+        }
+
+        // Function to adjust the image brightness
+        function adjustBrightness(value) {
+            const brightnessText = document.getElementById("brightnessValue");
+            brightnessText.textContent = `Brightness: ${value}%`;
+            const image = document.getElementById("imagePreview");
+            image.style.filter = `brightness(${value}%)`;  // Adjust the image brightness using CSS filter
+        }
+    </script>
+
+</body>
+</html>

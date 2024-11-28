@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Module - VR Therapy Dashboard</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+
+        /* Background Styling */
+        body {
+            background: url('offline-background.jpg') no-repeat center center fixed; /* Set background image */
+            background-size: cover; /* Ensure the image covers the entire page */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark container */
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        /* Buttons Styling */
+        .btn {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 18px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            display: none;
+            text-align: left;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+
+        .faq {
+            margin-bottom: 15px;
+        }
+
+        .faq h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .faq p {
+            font-size: 16px;
+            margin: 5px 0 0 20px;
+        }
+
+        /* Progress Report Table */
+        .progress-table {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .progress-table th, .progress-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .progress-table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Back Button */
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+
+        /* Close Button inside the Table */
+        .close-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .close-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Offline Module Container -->
+    <div class="container">
+        <h2>Offline Module</h2>
+
+        <!-- Downloads Button -->
+        <button class="btn" onclick="showDownloads()">Downloads</button>
+
+        <!-- Progress Report Button -->
+        <button class="btn" onclick="showProgressReport()">Progress Report</button>
+
+        <!-- FAQ Button -->
+        <button class="btn" onclick="toggleFAQs()">FAQs</button>
+
+        <!-- Offline Scenarios Button (opens file) -->
+        <button class="btn" onclick="openOfflineFile()">Offline Scenarios</button>
+
+        <!-- FAQ Section (Hidden by default) -->
+        <div class="faq-section" id="faqSection">
+            <div class="faq">
+                <h3>Q1: How do offline sessions work?</h3>
+                <p>A: Offline sessions allow patients to engage with the VR therapy without an internet connection.</p>
+            </div>
+            <div class="faq">
+                <h3>Q2: How can I track progress offline?</h3>
+                <p>A: You can track progress through the monthly reports generated in offline mode, which will sync once you're online.</p>
+            </div>
+            <div class="faq">
+                <h3>Q3: What happens if I lose my progress data?</h3>
+                <p>A: All session data is stored locally and synced once an internet connection is re-established.</p>
+            </div>
+            <button class="back-btn" onclick="goBackToModule()">Back to Offline Module</button>
+        </div>
+
+        <!-- Progress Report Table (Hidden by default) -->
+        <table class="progress-table" id="progressTable">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>January</th>
+                    <th>February</th>
+                    <th>March</th>
+                    <th>April</th>
+                    <th>May</th>
+                    <th>June</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mamoon</td>
+                    <td>Improved</td>
+                    <td>Stable</td>
+                    <td>Improved</td>
+                    <td>Stable</td>
+                    <td>Improved</td>
+                    <td>Good</td>
+                </tr>
+                <tr>
+                    <td>Sarah</td>
+                    <td>Stable</td>
+                    <td>Improved</td>
+                    <td>Stable</td>
+                    <td>Good</td>
+                    <td>Improved</td>
+                    <td>Improved</td>
+                </tr>
+                <tr>
+                    <td>Ali</td>
+                    <td>Good</td>
+                    <td>Good</td>
+                    <td>Improved</td>
+                    <td>Stable</td>
+                    <td>Stable</td>
+                    <td>Improved</td>
+                </tr>
+                <tr>
+                    <td>Ayesha</td>
+                    <td>Improved</td>
+                    <td>Good</td>
+                    <td>Improved</td>
+                    <td>Stable</td>
+                    <td>Good</td>
+                    <td>Good</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Close Button for the Report Table -->
+        <button class="close-btn" onclick="hideProgressReport()">Close Report</button>
+    </div>
+
+    <script>
+        // Function to show Offline Sessions (currently as an alert for demo)
+        function showOfflineSessions() {
+            alert("Offline Sessions - Here you can view or start the saved VR sessions for offline use.");
+        }
+
+        // Function to show Downloads (currently as an alert for demo)
+        function showDownloads() {
+            alert("Downloads - This is where you can find what has been downloaded for future use.");
+        }
+
+        // Function to show Progress Report Table
+        function showProgressReport() {
+            document.getElementById('progressTable').style.display = 'block';
+            document.querySelector('.close-btn').style.display = 'inline-block'; // Show close button
+        }
+
+        // Function to hide the Progress Report Table
+        function hideProgressReport() {
+            document.getElementById('progressTable').style.display = 'none';
+            document.querySelector('.close-btn').style.display = 'none'; // Hide close button
+        }
+
+        // Function to toggle the FAQ section visibility
+        function toggleFAQs() {
+            const faqSection = document.getElementById('faqSection');
+            faqSection.style.display = faqSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Function to go back to the Offline Module from FAQs
+        function goBackToModule() {
+            document.getElementById('faqSection').style.display = 'none';
+        }
+
+        // Function to open the Offline File (e.g., a PDF)
+        function openOfflineFile() {
+            window.open("open.html", "_blank");  // This will open 'open.html'
+        }
+    </script>
+
+</body>
+</html>
